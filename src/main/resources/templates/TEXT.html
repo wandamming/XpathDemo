@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang = "en">
+<head>
+  <meta charset = "UTF-8">
+  <meta name = "viewport"
+        content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+  <title>Test</title>
+  <script src = "js/jquery-3.6.0.js"></script>
+  <style>
+    /*兼容浏览器*/
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .content {
+      width: 100%;
+      height: 100%;
+    }
+
+    .content-left {
+      width: 19%;
+      height: 600px;
+      background-color: #1c232f;
+      float: left;
+    }
+
+    .content-right {
+      width: 81%;
+      height: 600px;
+      background-color: #64edd2;
+      float: left;
+    }
+
+    .left-title {
+      width: 100%;
+      height: 50px;
+    }
+
+    .left-title > a {
+      display: block;
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      color: white;
+      /*去掉a下默认下划线*/
+      text-decoration: none;
+    }
+
+    /*分割线*/
+    .seg {
+      height: 1px;
+      width: 100%;
+      background-color: black;
+    }
+
+    .nav {
+      /*上下5,左右0*/
+      margin: 5px 0;
+    }
+
+    /*菜单项主标题*/
+    .nav-title {
+      height: 50px;
+      width: 100%;
+      color: white;
+      text-align: center;
+      line-height: 40px;
+      cursor: pointer;
+    }
+
+    /*子标题内容区*/
+    .nav-content {
+      width: 100%;
+      height: 100%;
+      background-color: #0C1119;
+    }
+
+    /*子标题的样式*/
+    .nav-content > a {
+      display: block;
+      width: 100%;
+      height: 30px;
+      color: #CCCCCC;
+      text-decoration: none;
+      text-align: center;
+      line-height: 30px;
+      font-size: 13px;
+    }
+
+    /*子标题鼠标经过时的改变颜色*/
+    .nav-content > a:hover {
+      color: #FFFFFF;
+      background-color: #12040c;
+    }
+
+    /*内容区*/
+    .content-right{
+      font-size: 50px;
+      line-height: 600px;
+      text-align: center;
+    }
+  </style>
+
+</head>
+<body>
+<div class = "content">
+
+  <!--左侧导航栏-->
+  <div class = "content-left">
+
+      <div class = "left-title">
+        <a href = "http://localhost:8080/toFunctionOne">查询作者</a>
+      </div>
+
+      <!--水平线-->
+      <div class = "seg"></div>
+
+      <!--每一个菜单栏项-->
+      <div class = "nav-menu">
+        <div class = "nav-title">查询文献</div>
+      </div>
+
+      <div class = "seg"></div>
+
+      <!--每一个菜单栏项-->
+      <div class = "nav-menu">
+        <div class = "nav-title">查询合作者</div>
+      </div>
+
+      <div class = "seg"></div>
+
+      <!--每一个菜单栏项-->
+      <div class = "nav-menu">
+        <div class = "nav-title">Xpath查询</div>
+      </div>
+
+      <div class = "seg"></div>
+
+      <!--每一个菜单栏项-->
+      <div class = "nav-menu">
+        <!--主标题-->
+        <div class = "nav-title">GAT查询</div>
+      </div>
+
+      <!--水平线-->
+      <div class = "seg"></div>
+
+    </div>
+
+
+</div>
+
+  <!--右侧内容区-->
+  <div class = "content-right">
+    <h1>内容区</h1>
+  </div>
+</div>
+
+<script type="text/javascript">
+    $("#btn1").click(function() {
+        $.ajax({
+            url:"/functionFive",
+            data:{"xpathAdd":$("#xpathStr").val()},
+            type:"post",
+            dataType:"json",
+            "success":function(json) {
+                console.log(json);
+                var html="";
+                if(json.statusCode == 200){
+                    //alert(json.msg)
+
+                    // for (let i = 0; i < json.data.content.length; i++) {
+                    //   html += "<tr>"+
+                    //           "<td style=\"font-size: 30px\">"+json.data.content[i]+"</td>"+
+                    //           "</tr>"
+                    // }
+                    // for (let i = 0; i < json.data.content.length; i++) {
+                    //   if(json.data.name.contains()){
+                    // //    json.data.content = 'OOO';
+                    //     json.replace(json.data.content, "OOO");
+                    //   }
+
+                    // if (json.data.name == "proceedings,editor,editor,editor,title"){
+                    //   desc = "[j]";
+                    // }
+
+let year1 = "";
+let editor1 = [];
+let title1 = "";
+let school1 = "";
+let root1 = "";
+for (let i = 0; i < json.data.content.length; i++) {
+
+    if (json.data.name[i] == "editor"){
+        editor1[i] = json.data.content[i];
+    }
+
+    if (json.data.name[i] == "title"){
+        title1 = json.data.content[i];
+    }
+
+    if (json.data.name[i] == "school"){
+        school1 = json.data.content[i];
+    }
+
+    if (json.data.name[i] == "year") {
+        year1 = json.data.content[i];
+    }
+
+    if (json.data.name[i] == "proceedings" || json.data.name[i] == "inproceedings") {
+        root1 = "[c]";
+    }
+
+    if (json.data.name[i] == "mastersthesis" || json.data.name[i] == "phdthesis") {
+        root1 = "[D]";
+    }
+
+    if (json.data.name[i] == "www") {
+        root1 = "[EB]";
+    }
+
+    if (json.data.name[i] == "crossref") {
+        root1 = "[J]";
+    }
+
+}
+
+
+
+
+
+for (let i = 1; i < editor1.length-1; i++) {
+    html += "<td style=\"font-size: 15px\">" + editor1[i] + "," + "</td>"
+
+}
+for (let i = editor1.length-1; i <= editor1.length-1; i++){
+    html += "<td style=\"font-size: 15px\">" + editor1[i] + "." + "</td>"
+}
+html += "<td style=\"font-size: 15px\">" + " " + title1 + "</td>"
+
+html += "<td style=\"font-size: 15px\">" + root1 + "</td>"
+
+html += "<td style=\"font-size: 15px\">" + "." + " " + school1 + "," + "</td>"
+
+html += "<td style=\"font-size: 15px\">" + year1 + "." + "</td>"
+
+                    //alert("成功");
+                } else{
+                    alert(json.msg);
+                }
+                $("#content").html(html);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
+

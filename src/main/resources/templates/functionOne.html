@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>功能一</title>
+    <script src="../static/js/jquery-3.6.0.js"></script>
+    <style>
+
+        .w1{
+            position: absolute;
+            bottom: 100px;
+            right: 100px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+<p1 style="font-size: 20px">输入作者名字查找该作者参与编写的文献的标题!</p1>
+<p></p>
+<form id="form-function1" method="post" align="center">
+  <span style="font-size: 20px">请输入作者名称：</span>
+  <label>
+    <input type="text" name="xpath" id="xpathStr" style="width: 250px ;height:20px;font-size: 18px">
+  </label>
+  <input type="button" id="btn1" value="查询" style="font-size: 13px"/></br>
+</form>
+
+
+<table align="center">
+
+    <tbody id="content"></tbody>
+</table>
+
+<script type="text/javascript">
+    $("#btn1").click(function() {
+        $.ajax({
+            url:"/function",
+            data:{"xpathAdd":$("#xpathStr").val()},
+            type:"post",
+            dataType:"json",
+            "success":function(json) {
+                console.log(json);
+                var html="";if(json.statusCode == 200){
+                    //alert(json.msg)
+
+                    html+="<tr>"+
+                        "<td style=\"font-size: 25px\">"+"该作者参与编写的文献总数:"+ "    " +json.data.num+"</td>"+
+                        "</tr>"
+                    //alert("成功");
+
+                    for (let i = 0; i < json.data.content.length; i++) {
+                        html+="<tr>"+
+                             "<td style=\"font-size: 15px\">"+"该作者参与编写的文献章"+(i+1)+":"+"</td>"+
+                            "<td style=\"font-size: 15px\">"+json.data.content[i]+"</td>"+
+                            "</tr>"
+                    }
+
+                } else{
+                    alert(json.msg);
+                }
+                $("#content").html(html);
+            }
+        });
+    });
+</script>
+
+
+</body>
+</html>

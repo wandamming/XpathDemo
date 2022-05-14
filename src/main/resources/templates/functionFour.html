@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>功能四</title>
+    <script src="../static/js/jquery-3.6.0.js"></script>
+    <style>
+
+        .w4{
+            position: absolute;
+            bottom: 100px;
+            right: 100px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<p1 style="font-size: 20px">输入XPath语句进行查询!</p1>
+<p></p>
+<table>
+    <tr>
+        <td>
+            <form id="form-function4" method="post" align="center">
+                <span style="font-size: 20px">xpath查询语句：</span>
+                <label>
+                    <input type="text" name="xpath" id="xpathStr" style="width: 250px ;height:20px;font-size: 18px">
+                </label>
+                <input type="button" id="btn1" value="查询" style="font-size: 13px"/>
+
+                <tbody id="content"></tbody>
+
+            </form>
+        </td>
+    </tr>
+</table>
+
+<script type="text/javascript">
+    $("#btn1").click(function() {
+        $.ajax({
+            url:"/functionFour",
+            data:{"xpath":$("#xpathStr").val()},
+            type:"post",
+            dataType:"json",
+            "success":function(json) {
+                console.log(json);
+                var html="";
+
+                html+="<tr>"+
+                    "<td style=\"font-size: 25px\">"+"该xPath语句查询到"+json.data.name[0]+"数量为:"+"     "+json.data.num+"</td>"+
+                    "</tr>>"
+                //alert("成功");
+
+                if(json.statusCode == 200){
+                    //alert(json.msg)
+                    for (let i = 0; i < json.data.content.length; i++) {
+                        html+="<tr>"+
+                            "<td style=\"font-size: 20px\">"+"该xPath语句查询到"+json.data.name[i]+(i+1)+":"+"</td>"+
+                            "<td style=\"font-size: 20px\">"+json.data.content[i]+"</td>"+
+                            "</tr>>"
+                    }
+
+                } else{
+                    alert(json.msg);
+                }
+                $("#content").html(html);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

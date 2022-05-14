@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>功能二</title>
+  <script src="../static/js/jquery-3.6.0.js"></script>
+  <style>
+    .w1{
+      position: absolute;
+      bottom: 100px;
+      right: 100px;
+      color: black;
+    }
+
+  </style>
+
+</head>
+<body>
+
+<p1 style="font-size: 20px">输入文献标题后按照国际格式输出参考文献!</p1>
+<p></p>
+<form id="form-function1" method="post" align="center" >
+  <span style="font-size: 20px">请输入文献名称：</span>
+  <label>
+    <input type="text" name="xpath" id="xpathStr" style="width: 250px ;height:20px;font-size: 18px">
+  </label>
+  <input type="button" id="btn1" value="查询" style="font-size: 13px"/>
+
+</form>
+
+<table align="center">
+
+  <tbody id="content"></tbody>
+
+</table>
+
+
+
+<script type="text/javascript">
+  $("#btn1").click(function() {
+    $.ajax({
+      url:"/functionFive",
+      data:{"xpathAdd":$("#xpathStr").val()},
+      type:"post",
+      dataType:"json",
+      "success":function(json) {
+        console.log(json);
+        var html="";
+        if(json.statusCode == 200){
+          //alert(json.msg)
+
+          // for (let i = 0; i < json.data.content.length; i++) {
+          //   html += "<tr>"+
+          //           "<td style=\"font-size: 30px\">"+json.data.content[i]+"</td>"+
+          //           "</tr>"
+          // }
+          // for (let i = 0; i < json.data.content.length; i++) {
+        //   if(json.data.name.contains()){
+        // //    json.data.content = 'OOO';
+        //     json.replace(json.data.content, "OOO");
+        //   }
+
+          // if (json.data.name == "proceedings,editor,editor,editor,title"){
+          //   desc = "[j]";
+          // }
+
+          let year1 = "";
+          let editor1 = [];
+          let title1 = "";
+          let school1 = "";
+          let root1 = "";
+          for (let i = 0; i < json.data.content.length; i++) {
+
+            if (json.data.name[i] == "editor"){
+              editor1[i] = json.data.content[i];
+            }
+
+            if (json.data.name[i] == "title"){
+              title1 = json.data.content[i];
+            }
+
+            if (json.data.name[i] == "school"){
+              school1 = json.data.content[i];
+            }
+
+            if (json.data.name[i] == "year") {
+              year1 = json.data.content[i];
+            }
+
+            if (json.data.name[i] == "proceedings" || json.data.name[i] == "inproceedings") {
+              root1 = "[c]";
+            }
+
+            if (json.data.name[i] == "mastersthesis" || json.data.name[i] == "phdthesis") {
+              root1 = "[D]";
+            }
+
+            if (json.data.name[i] == "www") {
+              root1 = "[EB]";
+            }
+
+            if (json.data.name[i] == "crossref") {
+              root1 = "[J]";
+            }
+
+          }
+
+
+
+
+
+          for (let i = 1; i < editor1.length-1; i++) {
+            html += "<td style=\"font-size: 15px\">" + editor1[i] + "," + "</td>"
+
+          }
+          for (let i = editor1.length-1; i <= editor1.length-1; i++){
+            html += "<td style=\"font-size: 15px\">" + editor1[i] + "." + "</td>"
+          }
+          html += "<td style=\"font-size: 15px\">" + " " + title1 + "</td>"
+
+          html += "<td style=\"font-size: 15px\">" + root1 + "</td>"
+
+          html += "<td style=\"font-size: 15px\">" + "." + " " + school1 + "," + "</td>"
+
+          html += "<td style=\"font-size: 15px\">" + year1 + "." + "</td>"
+
+          //alert("成功");
+        } else{
+          alert(json.msg);
+        }
+        $("#content").html(html);
+      }
+    });
+  });
+</script>
+</body>
+</html>
+
+

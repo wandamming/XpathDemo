@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>基于XML的参考文献提取系统</title>
+  <script src="../static/js/jquery-3.6.0.js"></script>
+  <style>
+    body {
+      background-color: bisque;
+    }
+    #all{
+      width: 80%;
+      height: 80%;
+      border: 4px solid #188b81;
+      padding:14px;
+      margin: 0 auto;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+
+    }
+
+    #top{
+      margin: 0 auto;
+      line-height: 100px;
+      font-family: Microsoft YaHei;
+      font-size: 24px;
+      width: auto;
+      height: 100px;
+      text-align: center;
+      border-bottom: solid 2px #188b81;
+    }
+
+    #left{
+      width: 10%;
+      height: 100%;
+      border-right: solid 2px #188b81;
+      transform: translate(10%);
+      float: left;
+    }
+
+    #left ul{
+      list-style-type: none;
+    }
+
+
+
+    #right{
+      width: 90%;
+      height: 100%;
+      text-align: center;
+      float: left;
+    }
+    .my_class{
+      width: 89%;
+      height: 100%;
+    }
+    *{
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="top" style="font-size: 40px">基于XML的参考文献提取系统</div>
+  <div id="left">
+    <div style="height: 50px; width: auto;"></div>
+    <ul>
+      <li style="font-size: 30px"><a href="http://localhost:8080/toFunctionOne" target="mainFrame">查询作者</a></li><br />
+      <li style="font-size: 30px"><a href="http://localhost:8080/toFunctionTwo" target="mainFrame">查询文献</a></li><br />
+      <li style="font-size: 30px"><a href="http://localhost:8080/toFunctionThree" target="mainFrame">查询合作者</a></li><br />
+      <li style="font-size: 30px"><a href="http://localhost:8080/toFunctionFour" target="mainFrame">xpath查询</a></li><br />
+      <li style="font-size: 30px"><a href="http://localhost:8080/toFunctionFive" target="mainFrame">GAT查询</a></li><br />
+    </ul>
+  </div>
+  <div id="right" class="my_class">
+    <iframe name="mainFrame" style="width: 90%; height: 100%;"></iframe>
+  </div>
+
+
+  <a href="http://localhost:8080/TEXT.html" target="mainFrame">GAT查询</a>
+</body>
+</html>
+

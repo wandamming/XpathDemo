@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>基于XML的参考文献提取系统</title>
+  <script src="../static/js/jquery-3.6.0.js"></script>
+  <style>
+
+    *{
+      padding: 0;
+      margin: 0;
+    }
+
+    #top{
+      margin: 0 auto;
+      line-height: 100px;
+      font-family: Microsoft YaHei;
+      font-size: 20px;
+      width: auto;
+      /*height: 100px;*/
+      text-align: center;
+      background-color: rgba(29, 48, 116, 0.4);
+    }
+
+    #left{
+      width: 15%;
+      height: 2200px;
+      background-color: rgba(27, 91, 187, 0.63);
+      float: left;
+    }
+
+    #right{
+      width: 85%;
+      height: 2200px;
+      background-color: rgba(166, 203, 196, 0.25);
+      float: left;
+    }
+
+    .seg {
+      height: 1px;
+      width: 100%;
+      background-color: rgba(64, 25, 25, 0.42);
+    }
+
+    .nav-title {
+      height: 50px;
+      width: 100%;
+      color: #6cb67c;
+      font-size: 20px;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+    }
+
+    .frame{
+      color: rgba(17, 15, 15, 0.44);
+      text-decoration:none
+    }
+
+
+    #left ul{
+      list-style-type: none;
+    }
+
+    /*.my_class{*/
+    /*  width: 100%;*/
+    /*  height: 100%;*/
+    /*}*/
+
+  </style>
+</head>
+<body>
+
+
+<div id="top" style="font-size: 40px">基于XML的参考文献提取系统</div>
+<div id="left">
+  <ul>
+    <div style="height: 2px;width: 100%;background-color: rgba(64, 25, 25, 0.42);"></div>
+    <li class="nav-title"><a href="http://localhost:8080/toFunctionOne" target="mainFrame" class="frame">查询作者</a></li>
+    <div class = "seg"></div>
+    <li class="nav-title"><a href="http://localhost:8080/toFunctionTwo" target="mainFrame" class="frame">查询文献</a></li>
+    <div class = "seg"></div>
+    <li class="nav-title"><a href="http://localhost:8080/toFunctionThree" target="mainFrame" class="frame">查询合作者</a></li>
+    <div class = "seg"></div>
+    <li class="nav-title"><a href="http://localhost:8080/toFunctionFour" target="mainFrame" class="frame">xpath查询</a></li>
+    <div class = "seg"></div>
+    <li class="nav-title"><a href="http://localhost:8080/toFunctionFive" target="mainFrame" class="frame">格式输出</a></li>
+    <div class = "seg"></div>
+  </ul>
+</div>
+<div id="right" class="my_class">
+  <iframe name="mainFrame" style="width: 100%; height: 100%;"></iframe>
+</div>
+
+</body>
+</html>

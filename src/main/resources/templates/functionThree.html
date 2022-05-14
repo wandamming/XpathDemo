@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>功能三</title>
+  <script src="../static/js/jquery-3.6.0.js"></script>
+  <style>
+
+    .w1{
+      position: absolute;
+      bottom: 100px;
+      right: 100px;
+      color: black;
+
+    }
+  </style>
+</head>
+<body>
+
+<p1 style="font-size: 20px">输入作者名字，查找与该作者合作过的作者名和对应的文献标题!</p1>
+<p></p>
+
+<form id="form-function1" method="post" align="center">
+  <span style="font-size: 20px">请输入作者名字：</span>
+  <label>
+    <input type="text" name="xpath" id="xpathStr" style="width: 250px ;height:20px;font-size: 18px">
+  </label>
+  <input type="button" id="btn1" value="查询" style="font-size: 13px"/>
+</form>
+
+
+<table align="center">
+
+  <tbody id="content"></tbody>
+</table>
+
+<script type="text/javascript">
+  $("#btn1").click(function() {
+    $.ajax({
+      url:"/functionThree",
+      data:{"xpathAdd":$("#xpathStr").val()},
+      type:"post",
+      dataType:"json",
+      "success":function(json) {
+        console.log(json);
+        var html="";
+        if(json.statusCode == 200){
+
+          let desc = "";
+          for (let i = 0; i < json.data.content.length; i++) {
+            if (json.data.name[i] == "author" || json.data.name[i] == "editor"){
+              desc = "与该作者合作过的作者:";
+            } else if (json.data.name[i] == "title"){
+              desc = "合作的文献标题title:";
+            }
+            html+="<tr>"+
+                    "<td style=\"font-size: 15px\">"+desc+"</td>"+
+                    "<td style=\"font-size: 15px\">"+json.data.content[i]+"</td>"+
+                    "</tr>"
+          }
+
+          //alert("成功");
+        } else{
+          alert(json.msg);
+        }
+        $("#content").html(html);
+      }
+    });
+  });
+</script>
+</body>
+</html>
