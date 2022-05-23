@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<p1 style="font-size: 20px">输入文献标题后按照国际格式输出参考文献!</p1>
+<p1 style="font-size: 20px">输入文献标题后按照国标格式输出参考文献!</p1>
 <p></p>
 <form id="form-function1" method="post" align="center" >
   <span style="font-size: 20px">请输入文献名称：</span>
@@ -101,6 +101,10 @@
 
             if (json.data.name[i] == "crossref") {
               root1 = "[J]";
+            }
+
+            if (json.data.name[i] == "article") {
+              root1 = "[A]";
             }
 
           }
