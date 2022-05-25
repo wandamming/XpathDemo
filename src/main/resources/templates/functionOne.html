@@ -4,15 +4,6 @@
     <meta charset="UTF-8">
     <title>功能一</title>
     <script src="../static/js/jquery-3.6.0.js"></script>
-    <style>
-
-        .w1{
-            position: absolute;
-            bottom: 100px;
-            right: 100px;
-            color: black;
-        }
-    </style>
 </head>
 
 <body>
@@ -51,8 +42,7 @@
                     //alert("成功");
 
                     for (let i = 0; i < json.data.content.length; i++) {
-                        html+="<tr>"+
-                             "<td style=\"font-size: 15px\">"+"该作者参与编写的文献章"+(i+1)+":"+"</td>"+
+                        html+="<tr>"+                             "<td style=\"font-size: 15px\">"+"该作者参与编写的文献章"+(i+1)+":"+"</td>"+
                             "<td style=\"font-size: 15px\">"+json.data.content[i]+"</td>"+
                             "</tr>"
                     }

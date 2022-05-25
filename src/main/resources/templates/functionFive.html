@@ -2,17 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>功能二</title>
+  <title>功能五</title>
   <script src="../static/js/jquery-3.6.0.js"></script>
-  <style>
-    .w1{
-      position: absolute;
-      bottom: 100px;
-      right: 100px;
-      color: black;
-    }
-
-  </style>
 
 </head>
 <body>
@@ -71,7 +62,7 @@
           let root1 = "";
           for (let i = 0; i < json.data.content.length; i++) {
 
-            if (json.data.name[i] == "editor"){
+            if (json.data.name[i] == "editor" || json.data.name[i] == "author"){
               editor1[i] = json.data.content[i];
             }
 
@@ -79,7 +70,7 @@
               title1 = json.data.content[i];
             }
 
-            if (json.data.name[i] == "school"){
+            if (json.data.name[i] == "school" || json.data.name[i] == "journal"){
               school1 = json.data.content[i];
             }
 
@@ -112,22 +103,20 @@
 
 
 
-          html += "<td style=\"font-size: 15px\">" + "[1]" + "</td>"
 
           for (let i = 1; i < editor1.length-1; i++) {
-            html += "<td style=\"font-size: 15px\">" + editor1[i] + "," + "</td>"
-
+            html += "<p style=\"font-size: 15px ;display: inline;\">" + editor1[i] + "," + "</p>"
           }
           for (let i = editor1.length-1; i <= editor1.length-1; i++){
-            html += "<td style=\"font-size: 15px\">" + editor1[i] + "." + "</td>"
+            html += "<p style=\"font-size: 15px;display: inline;\">" + editor1[i] + "." + "</p>"
           }
-          html += "<td style=\"font-size: 15px\">" + " " + title1 + "</td>"
+          html += "<p style=\"font-size: 15px ;display: inline;\">" + " " + title1 + "</p>"
 
-          html += "<td style=\"font-size: 15px\">" + root1 + "</td>"
+          html += "<p style=\"font-size: 15px;display: inline;\">" + root1 + "</p>"
 
-          html += "<td style=\"font-size: 15px\">" + "." + " " + school1 + "," + "</td>"
+          html += "<p style=\"font-size: 15px;display: inline;\">" + "." + " " + school1 + "," + "</p>"
 
-          html += "<td style=\"font-size: 15px\">" + year1 + "." + "</td>"
+          html += "<p style=\"font-size: 15px;display: inline;\">" + year1 + "." + "</p>"
 
           //alert("成功");
         } else{

@@ -138,7 +138,13 @@ public class MyController {
 //        String xpath = "//*[contains(title, '"+xpathAdd+"')]/*";
 
 //        String xpath = "//*[*='" + xpathAdd + "']/title";
-        String xpath = "//*[contains(title, '"+xpathAdd+"')]/editor | //*[contains(title, '"+xpathAdd+"')]/title | //*[contains(title, '"+xpathAdd+"')]/year | //*[contains(title, '"+xpathAdd+"')]/school | //*[contains(title, '"+xpathAdd+"')]";
+        String xpath = "//*[contains(title, '"+xpathAdd+"')]/editor | " +
+                "//*[contains(title, '"+xpathAdd+"')]/author | " +
+                "//*[contains(title, '"+xpathAdd+"')]/title | " +
+                "//*[contains(title, '"+xpathAdd+"')]/year | " +
+                "//*[contains(title, '"+xpathAdd+"')]/school | " +
+                "//*[contains(title, '"+xpathAdd+"')]/journal | " +
+                "//*[contains(title, '"+xpathAdd+"')]";
 //         | //input[contains(title, '"+xpathAdd+"')]
         System.out.println(xpath);
         try {
