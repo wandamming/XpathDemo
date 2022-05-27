@@ -94,7 +94,9 @@ public class MyController {
     public Response functionThree(@RequestParam String xpathAdd){
         Response response = new Response();
         //String xpath = "//inproceedings[author='"+xpathAdd+"']/author";
-        String xpath = "//*[*='"+xpathAdd+"']/author/preceding-sibling::* | //*[*='"+xpathAdd+"']/editor | //*[*='"+xpathAdd+"']/title";
+        String xpath = "//*[*='"+xpathAdd+"']/author | " +
+                       "//*[*='"+xpathAdd+"']/editor | " +
+                       "//*[*='"+xpathAdd+"']/title";
 
         System.out.println();
 
@@ -139,12 +141,12 @@ public class MyController {
 
 //        String xpath = "//*[*='" + xpathAdd + "']/title";
         String xpath = "//*[contains(title, '"+xpathAdd+"')]/editor | " +
-                "//*[contains(title, '"+xpathAdd+"')]/author | " +
-                "//*[contains(title, '"+xpathAdd+"')]/title | " +
-                "//*[contains(title, '"+xpathAdd+"')]/year | " +
-                "//*[contains(title, '"+xpathAdd+"')]/school | " +
-                "//*[contains(title, '"+xpathAdd+"')]/journal | " +
-                "//*[contains(title, '"+xpathAdd+"')]";
+                       "//*[contains(title, '"+xpathAdd+"')]/author | " +
+                       "//*[contains(title, '"+xpathAdd+"')]/title | " +
+                       "//*[contains(title, '"+xpathAdd+"')]/year | " +
+                       "//*[contains(title, '"+xpathAdd+"')]/school | " +
+                       "//*[contains(title, '"+xpathAdd+"')]/journal | " +
+                       "//*[contains(title, '"+xpathAdd+"')]";
 //         | //input[contains(title, '"+xpathAdd+"')]
         System.out.println(xpath);
         try {

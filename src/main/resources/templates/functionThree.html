@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>功能三</title>
   <script src="../static/js/jquery-3.6.0.js"></script>
+
 </head>
 <body>
 
@@ -43,7 +44,7 @@
             } else if (json.data.name[i] == "title"){
               desc = "合作的文献标题title:";
             }
-            html+="<tr>"+
+            html += "<tr>"+
                     "<td style=\"font-size: 15px\">"+desc+"</td>"+
                     "<td style=\"font-size: 15px\">"+json.data.content[i]+"</td>"+
                     "</tr>"
