@@ -58,7 +58,8 @@ public class MyController {
     @PostMapping("/function")
     public Response functionOne(@RequestParam String xpathAdd){
         Response response = new Response();
-        String xpath = "//*[contains(author, '"+xpathAdd+"')]/title";
+        String xpath = "//*[contains(author, '"+xpathAdd+"')]/title |" +
+                         "//*[contains(editor, '"+xpathAdd+"')]/title";
         try {
             ResultNodeList nodeList = myServiceImpl.xPathTest(xpath);
             response.setData(nodeList);

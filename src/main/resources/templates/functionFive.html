@@ -79,23 +79,23 @@
             }
 
             if (json.data.name[i] == "proceedings" || json.data.name[i] == "inproceedings") {
-              root1 = "[c]";
+              root1 = "[c]";  //会议论文集
             }
 
             if (json.data.name[i] == "mastersthesis" || json.data.name[i] == "phdthesis") {
-              root1 = "[D]";
+              root1 = "[D]"; //硕博论文
             }
 
             if (json.data.name[i] == "www") {
-              root1 = "[EB]";
+              root1 = "[EB]";  //电子公告
             }
 
             if (json.data.name[i] == "crossref") {
-              root1 = "[J]";
+              root1 = "[J]";  //期刊
             }
 
             if (json.data.name[i] == "article") {
-              root1 = "[A]";
+              root1 = "[A]";  //论文集分析出来所获得的文献资料
             }
 
           }
@@ -105,18 +105,18 @@
 
 
           for (let i = 1; i < editor1.length-1; i++) {
-            html += "<p style=\"font-size: 15px ;display: inline;\">" + editor1[i] + "," + "</p>"
+            html += "<p style=\"font-size: 20px ;display: inline;\">" + editor1[i] + "," + "</p>"
           }
           for (let i = editor1.length-1; i <= editor1.length-1; i++){
-            html += "<p style=\"font-size: 15px;display: inline;\">" + editor1[i] + "." + "</p>"
+            html += "<p style=\"font-size: 20px;display: inline;\">" + editor1[i] + "." + "</p>"
           }
-          html += "<p style=\"font-size: 15px ;display: inline;\">" + " " + title1 + "</p>"
+          html += "<p style=\"font-size: 20px ;display: inline;\">" + " " + title1 + "</p>"
 
-          html += "<p style=\"font-size: 15px;display: inline;\">" + root1 + "</p>"
+          html += "<p style=\"font-size: 20px;display: inline;\">" + root1 + "</p>"
 
-          html += "<p style=\"font-size: 15px;display: inline;\">" + "." + " " + school1 + "," + "</p>"
+          html += "<p style=\"font-size: 20px;display: inline;\">" + "." + " " + school1 + "," + "</p>"
 
-          html += "<p style=\"font-size: 15px;display: inline;\">" + year1 + "." + "</p>"
+          html += "<p style=\"font-size: 20px;display: inline;\">" + year1 + "." + "</p>"
 
           //alert("成功");
         } else{
